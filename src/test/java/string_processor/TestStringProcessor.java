@@ -1,4 +1,6 @@
-import string_processor.*;
+package string_processor;
+
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,8 +17,8 @@ public class TestStringProcessor {
                 () -> assertThrows(StringException.class, () -> StringProcessor.loopString("1aа", -1))
         );
     }
-
-
+    
+    
     @Test
     public void testStringProcessorCountEntries() {
         assertAll(
@@ -29,8 +31,8 @@ public class TestStringProcessor {
                 () -> assertThrows(StringException.class, () -> StringProcessor.countEntries("абв", ""))
         );
     }
-
-
+    
+    
     @Test
     public void testStringProcessorReplaceNumbersWithWords() {
         assertAll(
@@ -41,20 +43,20 @@ public class TestStringProcessor {
                 () -> assertThrows(StringException.class, () -> StringProcessor.replaceNumbersWithWords(null))
         );
     }
-
-
+    
+    
     @Test
     public void testStringProcessorDelEverySecondChar() throws StringException {
         StringBuilder sb1 = new StringBuilder("AbcАбв12");
         StringBuilder sb2 = new StringBuilder("Abc");
         StringBuilder sb3 = new StringBuilder("A");
         StringBuilder sb4 = new StringBuilder();
-
+        
         StringProcessor.delEverySecondChar(sb1);
         StringProcessor.delEverySecondChar(sb2);
         StringProcessor.delEverySecondChar(sb3);
         StringProcessor.delEverySecondChar(sb4);
-
+        
         assertAll(
                 () -> assertEquals("Acб1", sb1.toString()),
                 () -> assertEquals("Ac", sb2.toString()),
@@ -63,12 +65,12 @@ public class TestStringProcessor {
                 () -> assertThrows(StringException.class, () -> StringProcessor.delEverySecondChar(null))
         );
     }
-
-
+    
+    
     @Test
     public void testStringProcessorExchangeFirstAndLastWords() throws StringException {
         StringBuilder[] sbArray = new StringBuilder[8];
-
+        
         sbArray[0] = new StringBuilder("мама мыла раму");
         sbArray[1] = new StringBuilder("   мама  мыла    раму ");
         sbArray[2] = new StringBuilder("12мама мыла!раму?");
@@ -77,10 +79,10 @@ public class TestStringProcessor {
         sbArray[5] = new StringBuilder("oneword");
         sbArray[6] = new StringBuilder("10 20 900 4! -9.2; = §/");
         sbArray[7] = new StringBuilder();
-
+        
         for (byte i = 0; i < 8; i++)
             StringProcessor.exchangeFirstAndLastWords(sbArray[i]);
-
+        
         assertAll(
                 () -> assertEquals("раму мыла мама", sbArray[0].toString()),
                 () -> assertEquals("   раму  мыла    мама ", sbArray[1].toString()),
@@ -93,8 +95,8 @@ public class TestStringProcessor {
                 () -> assertThrows(StringException.class, () -> StringProcessor.exchangeFirstAndLastWords(null))
         );
     }
-
-
+    
+    
     @Test
     public void testStringProcessorHexToDec() {
         String str1 = "Васе 0x00000010 лет";
@@ -108,7 +110,7 @@ public class TestStringProcessor {
         String str9 = "0x000m0001";
         String str10 = "no numbers";
         String str11 = "";
-
+        
         assertAll(
                 () -> assertEquals("Васе 16 лет", StringProcessor.hexToDec(str1)),
                 () -> assertEquals("Vasya is 26, John is 18", StringProcessor.hexToDec(str2)),
