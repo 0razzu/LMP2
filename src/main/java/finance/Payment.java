@@ -20,7 +20,7 @@ public class Payment {
     
     
     public void setName(String name) throws FinanceException {
-        if ((name == null) || (name == ""))
+        if ((name == null) || (name.equals("")))
             throw new FinanceException(FinanceErrorCode.WRONG_NAME);
         
         this.name = name;

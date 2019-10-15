@@ -9,7 +9,7 @@ public class StringProcessor {
         if (string == null)
             throw new StringException(StringErrorCode.NULL_STRING);
         
-        if ((coefficient == 0) || (string == ""))
+        if ((coefficient == 0) || (string.equals("")))
             return "";
         
         StringBuilder stringBuilder = new StringBuilder(string);
@@ -27,7 +27,7 @@ public class StringProcessor {
         if ((string == null) || (substring == null))
             throw new StringException(StringErrorCode.NULL_STRING);
         
-        if (substring == "")
+        if (substring.equals(""))
             throw new StringException(StringErrorCode.EMPTY_STRING);
         
         for (int i = 0; i <= string.length() - substring.length(); i++)

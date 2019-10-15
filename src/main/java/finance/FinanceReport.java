@@ -1,6 +1,9 @@
 package finance;
 
 
+import java.util.Arrays;
+
+
 public class FinanceReport {
     private Payment[] payments;
     private String reporterName;
@@ -38,7 +41,7 @@ public class FinanceReport {
     
     
     public void setReporterName(String reporterName) throws FinanceException {
-        if ((reporterName == null) || (reporterName == ""))
+        if ((reporterName == null) || (reporterName.equals("")))
             throw new FinanceException(FinanceErrorCode.WRONG_NAME);
     
         this.reporterName = reporterName;
@@ -105,5 +108,16 @@ public class FinanceReport {
         
         return String.format("Автор: %s, дата: %02d.%02d.%04d, платежи:%n" + paymentsSB.toString(),
                 reporterName, getDay(), getMonth(), getYear());
+    }
+    
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof FinanceReport)) return false;
+        FinanceReport that = (FinanceReport) o;
+        return Arrays.equals(payments, that.payments) &&
+                reporterName.equals(that.reporterName) &&
+                Arrays.equals(date, that.date);
     }
 }

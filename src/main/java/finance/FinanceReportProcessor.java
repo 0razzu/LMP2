@@ -15,7 +15,7 @@ public class FinanceReportProcessor {
             if (payment.getName().charAt(0) == c)
                 paymentsNew.add(payment);
         
-        return new FinanceReport((Payment[]) paymentsNew.toArray(), financeReport.getReporterName(),
+        return new FinanceReport(paymentsNew.toArray(new Payment[0]), financeReport.getReporterName(),
                 financeReport.getDay(), financeReport.getMonth(), financeReport.getYear());
     }
     
@@ -30,13 +30,13 @@ public class FinanceReportProcessor {
             if (payment.getAmount() < amount)
                 paymentsNew.add(payment);
         
-        return new FinanceReport((Payment[]) paymentsNew.toArray(), financeReport.getReporterName(),
+        return new FinanceReport(paymentsNew.toArray(new Payment[0]), financeReport.getReporterName(),
                 financeReport.getDay(), financeReport.getMonth(), financeReport.getYear());
     }
     
     
     public static int getSumOn(String date, final FinanceReport financeReport) throws FinanceException {
-        if (financeReport == null)
+        if ((financeReport == null) || (date == null) || (date.equals("")))
             throw new FinanceException(FinanceErrorCode.NULL_REPORT);
         
         int sum = 0, day, month, year;
@@ -44,8 +44,8 @@ public class FinanceReportProcessor {
         try {
             day = Integer.parseInt(date.substring(0, 2));
             month = Integer.parseInt(date.substring(3, 5));
-            year = Integer.parseInt(date.substring(6, date.length()));
-        } catch (NumberFormatException e) {
+            year = Integer.parseInt(date.substring(6));
+        } catch (NumberFormatException | StringIndexOutOfBoundsException e) {
             throw new FinanceException(FinanceErrorCode.WRONG_DATE);
         }
         
