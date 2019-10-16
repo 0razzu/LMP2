@@ -2,18 +2,18 @@ package finance;
 
 
 import java.util.Arrays;
+import java.util.Objects;
 
 
 public class FinanceReport {
     private Payment[] payments;
     private String reporterName;
-    private int[] date;
+    private int day, month, year;
     
     
     public FinanceReport(Payment[] payments, String reporterName, int day, int month, int year) throws FinanceException {
         setPayments(payments);
         setReporterName(reporterName);
-        date = new int[3];
         setDate(day, month, year);
     }
     
@@ -49,17 +49,12 @@ public class FinanceReport {
     
     
     public void setDate(int day, int month, int year) throws FinanceException {
-        if ((year <= 0) || (month <= 0) || (month > 12) || (day <= 0) || ((day > 31) ||
-                (day > 30) &&
-                        ((month == 4) || (month == 6) || (month == 9) || (month == 11)) ||
-                (month == 2) &&
-                        ((day > 29) ||
-                                ((day > 28) && !((year % 400 == 0) || (year % 100 != 0) && (year % 4 == 0))))))
+        if (Calendar.wrongDate(day, month, year))
             throw new FinanceException(FinanceErrorCode.WRONG_DATE);
     
-        date[0] = day;
-        date[1] = month;
-        date[2] = year;
+        this.day = day;
+        this.month = month;
+        this.year = year;
     }
     
     
@@ -69,17 +64,17 @@ public class FinanceReport {
     
     
     public int getDay() {
-        return date[0];
+        return day;
     }
     
     
     public int getMonth() {
-        return date[1];
+        return month;
     }
     
     
     public int getYear() {
-        return date[2];
+        return year;
     }
     
     
@@ -116,8 +111,18 @@ public class FinanceReport {
         if (this == o) return true;
         if (!(o instanceof FinanceReport)) return false;
         FinanceReport that = (FinanceReport) o;
-        return Arrays.equals(payments, that.payments) &&
-                reporterName.equals(that.reporterName) &&
-                Arrays.equals(date, that.date);
+        return day == that.day &&
+                month == that.month &&
+                year == that.year &&
+                Arrays.equals(payments, that.payments) &&
+                reporterName.equals(that.reporterName);
+    }
+    
+    
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(reporterName, day, month, year);
+        result = 31 * result + Arrays.hashCode(payments);
+        return result;
     }
 }

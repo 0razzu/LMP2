@@ -76,8 +76,8 @@ public class TestStringProcessor {
         sbArray[1] = new StringBuilder("   мама  мыла    раму ");
         sbArray[2] = new StringBuilder("12мама мыла!раму?");
         sbArray[3] = new StringBuilder("Lorem ipsum dolor sit amet");
-        sbArray[4] = new StringBuilder("    two words ");
-        sbArray[5] = new StringBuilder("  oneword ");
+        sbArray[4] = new StringBuilder("two words");
+        sbArray[5] = new StringBuilder("oneword");
         sbArray[6] = new StringBuilder("10 20 900 4! -9.2; = §/");
         sbArray[7] = new StringBuilder();
         
@@ -89,8 +89,8 @@ public class TestStringProcessor {
                 () -> assertEquals("   раму  мыла    мама ", sbArray[1].toString()),
                 () -> assertEquals("12раму мыла!мама?", sbArray[2].toString()),
                 () -> assertEquals("amet ipsum dolor sit Lorem", sbArray[3].toString()),
-                () -> assertEquals("    words two ", sbArray[4].toString()),
-                () -> assertEquals("  oneword ", sbArray[5].toString()),
+                () -> assertEquals("words two", sbArray[4].toString()),
+                () -> assertEquals("oneword", sbArray[5].toString()),
                 () -> assertEquals("10 20 900 4! -9.2; = §/", sbArray[6].toString()),
                 () -> assertEquals("", sbArray[7].toString()),
                 () -> assertThrows(StringException.class, () -> StringProcessor.exchangeFirstAndLastWords(null))

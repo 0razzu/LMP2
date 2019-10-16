@@ -1,19 +1,16 @@
 package finance;
 
 
-import java.util.Arrays;
 import java.util.Objects;
 
 
 public class Payment {
     private String name;
-    private int[] date;
-    private int amount;
+    private int day, month, year, amount;
     
     
     public Payment(String name, int day, int month, int year, int amount) throws FinanceException {
         setName(name);
-        date = new int[3];
         setDate(day, month, year);
         setAmount(amount);
     }
@@ -28,17 +25,12 @@ public class Payment {
     
     
     public void setDate(int day, int month, int year) throws FinanceException {
-        if ((year <= 0) || (month <= 0) || (month > 12) || (day <= 0) || ((day > 31) ||
-                (day > 30) &&
-                        ((month == 4) || (month == 6) || (month == 9) || (month == 11)) ||
-                (month == 2) &&
-                        ((day > 29) ||
-                                ((day > 28) && !((year % 400 == 0) || (year % 100 != 0) && (year % 4 == 0))))))
+        if (Calendar.wrongDate(day, month, year))
             throw new FinanceException(FinanceErrorCode.WRONG_DATE);
         
-        date[0] = day;
-        date[1] = month;
-        date[2] = year;
+        this.day = day;
+        this.month = month;
+        this.year = year;
     }
     
     
@@ -56,17 +48,17 @@ public class Payment {
     
     
     public int getDay() {
-        return date[0];
+        return day;
     }
     
     
     public int getMonth() {
-        return date[1];
+        return month;
     }
     
     
     public int getYear() {
-        return date[2];
+        return year;
     }
     
     
@@ -87,16 +79,16 @@ public class Payment {
         if (this == o) return true;
         if (!(o instanceof Payment)) return false;
         Payment payment = (Payment) o;
-        return amount == payment.amount &&
-                name.equals(payment.name) &&
-                Arrays.equals(date, payment.date);
+        return day == payment.day &&
+                month == payment.month &&
+                year == payment.year &&
+                amount == payment.amount &&
+                name.equals(payment.name);
     }
     
     
     @Override
     public int hashCode() {
-        int result = Objects.hash(name, amount);
-        result = 31 * result + Arrays.hashCode(date);
-        return result;
+        return Objects.hash(name, day, month, year, amount);
     }
 }
