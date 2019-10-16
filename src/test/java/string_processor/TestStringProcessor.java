@@ -40,6 +40,7 @@ public class TestStringProcessor {
                 () -> assertEquals("одиндватричетырепять | шестьсемьвосемьдевятьноль",
                         StringProcessor.replaceNumbersWithWords("12345 | 67890")),
                 () -> assertEquals("", StringProcessor.replaceNumbersWithWords("")),
+                () -> assertEquals("abc", StringProcessor.replaceNumbersWithWords("abc")),
                 () -> assertThrows(StringException.class, () -> StringProcessor.replaceNumbersWithWords(null))
         );
     }
@@ -75,8 +76,8 @@ public class TestStringProcessor {
         sbArray[1] = new StringBuilder("   мама  мыла    раму ");
         sbArray[2] = new StringBuilder("12мама мыла!раму?");
         sbArray[3] = new StringBuilder("Lorem ipsum dolor sit amet");
-        sbArray[4] = new StringBuilder("two words");
-        sbArray[5] = new StringBuilder("oneword");
+        sbArray[4] = new StringBuilder("    two words ");
+        sbArray[5] = new StringBuilder("  oneword ");
         sbArray[6] = new StringBuilder("10 20 900 4! -9.2; = §/");
         sbArray[7] = new StringBuilder();
         
@@ -88,8 +89,8 @@ public class TestStringProcessor {
                 () -> assertEquals("   раму  мыла    мама ", sbArray[1].toString()),
                 () -> assertEquals("12раму мыла!мама?", sbArray[2].toString()),
                 () -> assertEquals("amet ipsum dolor sit Lorem", sbArray[3].toString()),
-                () -> assertEquals("words two", sbArray[4].toString()),
-                () -> assertEquals("oneword", sbArray[5].toString()),
+                () -> assertEquals("    words two ", sbArray[4].toString()),
+                () -> assertEquals("  oneword ", sbArray[5].toString()),
                 () -> assertEquals("10 20 900 4! -9.2; = §/", sbArray[6].toString()),
                 () -> assertEquals("", sbArray[7].toString()),
                 () -> assertThrows(StringException.class, () -> StringProcessor.exchangeFirstAndLastWords(null))
@@ -99,8 +100,8 @@ public class TestStringProcessor {
     
     @Test
     public void testStringProcessorHexToDec() {
-        String str1 = "Васе 0x00000010 лет";
-        String str2 = "Vasya is 0x0000001A, John is 0x00000012";
+        String str1 = "Васе 0x10 лет";
+        String str2 = "Vasya is 0x0000001a, John is 0x00000012";
         String str3 = "0x00000001, 0x00000011; 0x00000F0F. 0x00000000, 0x01";
         String str4 = "0x0000000A0x000000010x00989680";
         String str5 = "0x00000100";
@@ -114,13 +115,13 @@ public class TestStringProcessor {
         assertAll(
                 () -> assertEquals("Васе 16 лет", StringProcessor.hexToDec(str1)),
                 () -> assertEquals("Vasya is 26, John is 18", StringProcessor.hexToDec(str2)),
-                () -> assertEquals("1, 17; 3855. 0, 0x01", StringProcessor.hexToDec(str3)),
+                () -> assertEquals("1, 17; 3855. 0, 1", StringProcessor.hexToDec(str3)),
                 () -> assertEquals("10110000000", StringProcessor.hexToDec(str4)),
                 () -> assertEquals("256", StringProcessor.hexToDec(str5)),
                 () -> assertEquals(str6, StringProcessor.hexToDec(str6)),
                 () -> assertEquals(str7, StringProcessor.hexToDec(str7)),
                 () -> assertEquals(str8, StringProcessor.hexToDec(str8)),
-                () -> assertEquals(str9, StringProcessor.hexToDec(str9)),
+                () -> assertEquals("0m0001", StringProcessor.hexToDec(str9)),
                 () -> assertEquals(str10, StringProcessor.hexToDec(str10)),
                 () -> assertEquals(str11, StringProcessor.hexToDec(str11)),
                 () -> assertThrows(StringException.class, () -> StringProcessor.hexToDec(null))

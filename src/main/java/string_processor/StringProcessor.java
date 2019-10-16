@@ -85,7 +85,7 @@ public class StringProcessor {
         lastWordE++;
         
         if (firstWordE < lastWordE) {
-            while ((lastWordE > 0) && (Character.isAlphabetic(stringBuilder.charAt(lastWordB))))
+            while ((lastWordB > 0) && (Character.isAlphabetic(stringBuilder.charAt(lastWordB))))
                 lastWordB--;
             
             lastWordB++;
@@ -99,30 +99,43 @@ public class StringProcessor {
     }
     
     
+    private static boolean isHexChar(char c) {
+        return ((Character.isDigit(c))) ||
+                ((c >= 'a') && (c <= 'f')) ||
+                ((c >= 'A') && (c <= 'F'));
+    }
+    
+    
     public static String hexToDec(String str) throws StringException {
         if (str == null)
             throw new StringException(StringErrorCode.NULL_STRING);
         
         StringBuilder sb = new StringBuilder(str);
         String substr;
-        int i = 0, num;
+        int num, numB = 0, numE;
         
-        while (i <= sb.length() - 10) {
-            i = sb.indexOf("0x", i);
+        while (numB < sb.length() - 2) {
+            numB = sb.indexOf("0x", numB);
             
             try {
-                substr = sb.substring(i + 2, i + 10);
+                numE = numB + 2;
                 
-                if ((substr.charAt(0) == '+') || (substr.charAt(0) == '-'))
-                    throw new NumberFormatException();
+                while ((numE < sb.length()) && (isHexChar(sb.charAt(numE))))
+                    numE++;
+                
+                if ((numE + 1 < sb.length()) && (sb.charAt(numE - 1) == '0') &&
+                        (sb.charAt(numE) == 'x') && (isHexChar(sb.charAt(numE + 1))))
+                    numE--;
+                
+                substr = sb.substring(numB + 2, numE);
                 
                 num = Integer.parseInt(substr, 16);
-                sb.replace(i, i + 10, Integer.toString(num));
-            } catch (NumberFormatException e) {
-                if (i == -1)
-                    i = sb.length();
-                
-                i += 2;
+                sb.replace(numB, numE, Integer.toString(num));
+            } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                if (numB == -1)
+                    numB = sb.length();
+    
+                numB += 2;
             }
         }
         
