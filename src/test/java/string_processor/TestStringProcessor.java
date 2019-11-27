@@ -22,6 +22,7 @@ public class TestStringProcessor {
     @Test
     public void testStringProcessorCountEntries() {
         assertAll(
+                () -> assertEquals(1, StringProcessor.countEntries("a", "a")),
                 () -> assertEquals(3, StringProcessor.countEntries("aaa", "a")),
                 () -> assertEquals(2, StringProcessor.countEntries("aaa", "aa")),
                 () -> assertEquals(5, StringProcessor.countEntries("88888", "8")),
