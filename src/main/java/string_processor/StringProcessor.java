@@ -31,10 +31,8 @@ public class StringProcessor {
             throw new StringException(StringErrorCode.EMPTY_STRING);
         
         for (int i = 0; i <= string.length() - substring.length(); i++)
-            if (string.regionMatches(i, substring, 0, substring.length())) {
+            if (string.regionMatches(i, substring, 0, substring.length()))
                 k++;
-                i += substring.length() - 1;
-            }
         
         return k;
     }
