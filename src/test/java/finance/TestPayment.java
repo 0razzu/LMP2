@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestPayment {
     @Test
-    public void testPayment() throws FinanceException {
+    void testPayment() throws FinanceException {
         Payment payment1 = new Payment("Иванов И. И.", 1, 1, 2019, 10000);
         Payment payment2 = new Payment("Петров Б. В.", 31, 12, 2018, 19);
         Payment payment3 = new Payment("Anonymous", 29, 2, 2020, 135450);
@@ -32,7 +32,7 @@ public class TestPayment {
     
     
     @Test
-    public void testPaymentExceptions() {
+    void testPaymentExceptions() {
         assertAll(
                 () -> assertThrows(FinanceException.class, () -> new Payment("", 1, 1, 2000, 1000)),
                 () -> assertThrows(FinanceException.class, () -> new Payment(null, 1, 1, 2000, 1000)),
@@ -47,7 +47,7 @@ public class TestPayment {
     
     
     @Test
-    public void testPaymentEquals() throws FinanceException {
+    void testPaymentEquals() throws FinanceException {
         Payment payment1 = new Payment("Иванов И. И.", 1, 1, 2019, 10000);
         Payment payment2 = new Payment("Иванов И. И.", 1, 1, 2019, 10000);
         Payment payment3 = new Payment("Петров Б. В.", 1, 1, 2019, 10000);

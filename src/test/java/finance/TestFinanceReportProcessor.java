@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestFinanceReportProcessor {
     @Test
-    public void testFinanceReportProcessorGetStartingWith() throws FinanceException {
+    void testFinanceReportProcessorGetStartingWith() throws FinanceException {
         Payment[] payments1 = new Payment[4];
         Payment[] payments2 = new Payment[2];
         Payment[] payments3 = new Payment[1];
@@ -39,7 +39,7 @@ public class TestFinanceReportProcessor {
     
     
     @Test
-    public void testFinanceReportProcessorGetPaymentsLessThan() throws FinanceException {
+    void testFinanceReportProcessorGetPaymentsLessThan() throws FinanceException {
         Payment[] payments1 = new Payment[4];
         Payment[] payments2 = new Payment[2];
         Payment[] payments3 = new Payment[1];
@@ -75,7 +75,7 @@ public class TestFinanceReportProcessor {
     
     
     @Test
-    public void testFinanceReportProcessorGetSumOn() throws FinanceException {
+    void testFinanceReportProcessorGetSumOn() throws FinanceException {
         Payment[] payments = new Payment[4];
     
         payments[0] = new Payment("Иванов И. И.", 2, 2, 2002, 1999999);
@@ -104,7 +104,7 @@ public class TestFinanceReportProcessor {
     
     
     @Test
-    public void testFinanceReportProcessorGetMonthsWithoutPayments() throws FinanceException {
+    void testFinanceReportProcessorGetMonthsWithoutPayments() throws FinanceException {
         Payment[] payments = new Payment[19];
     
         payments[0] = new Payment("Иванов И. И.", 2, 2, 2018, 1999999);

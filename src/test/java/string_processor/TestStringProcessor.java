@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestStringProcessor {
     @Test
-    public void testStringProcessorLoopString() {
+    void testStringProcessorLoopString() {
         assertAll(
                 () -> assertEquals("aBcб12aBcб12aBcб12", StringProcessor.loopString("aBcб12", 3)),
                 () -> assertEquals("!!!!!!!!!!", StringProcessor.loopString("!", 10)),
@@ -20,7 +20,7 @@ public class TestStringProcessor {
     
     
     @Test
-    public void testStringProcessorCountEntries() {
+    void testStringProcessorCountEntries() {
         assertAll(
                 () -> assertEquals(1, StringProcessor.countEntries("a", "a")),
                 () -> assertEquals(3, StringProcessor.countEntries("aaa", "a")),
@@ -36,7 +36,7 @@ public class TestStringProcessor {
     
     
     @Test
-    public void testStringProcessorReplaceNumbersWithWords() {
+    void testStringProcessorReplaceNumbersWithWords() {
         assertAll(
                 () -> assertEquals("семь км", StringProcessor.replaceNumbersWithWords("7 км")),
                 () -> assertEquals("одиндватричетырепять | шестьсемьвосемьдевятьноль",
@@ -49,7 +49,7 @@ public class TestStringProcessor {
     
     
     @Test
-    public void testStringProcessorDelEverySecondChar() throws StringException {
+    void testStringProcessorDelEverySecondChar() throws StringException {
         StringBuilder sb1 = new StringBuilder("AbcАбв12");
         StringBuilder sb2 = new StringBuilder("Abc");
         StringBuilder sb3 = new StringBuilder("A");
@@ -71,7 +71,7 @@ public class TestStringProcessor {
     
     
     @Test
-    public void testStringProcessorExchangeFirstAndLastWords() throws StringException {
+    void testStringProcessorExchangeFirstAndLastWords() throws StringException {
         StringBuilder[] sbArray = new StringBuilder[8];
         
         sbArray[0] = new StringBuilder("мама мыла раму");
@@ -101,7 +101,7 @@ public class TestStringProcessor {
     
     
     @Test
-    public void testStringProcessorHexToDec() {
+    void testStringProcessorHexToDec() {
         String str1 = "Васе 0x10 лет";
         String str2 = "Vasya is 0x0000001a, John is 0x00000012";
         String str3 = "0x00000001, 0x00000011; 0x00000F0F. 0x00000000, 0x01";

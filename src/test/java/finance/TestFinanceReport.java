@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestFinanceReport {
     @Test
-    public void testFinanceReport1() throws FinanceException {
+    void testFinanceReport1() throws FinanceException {
         Payment[] payments = new Payment[4];
         
         payments[0] = new Payment("Иванов И. И.", 2, 2, 2002, 1999999);
@@ -32,7 +32,7 @@ public class TestFinanceReport {
     
     
     @Test
-    public void testFinanceReport2() throws FinanceException {
+    void testFinanceReport2() throws FinanceException {
         Payment[] payments = new Payment[2];
         
         payments[0] = new Payment("Иванов И. И.", 2, 2, 2002, 1999999);
@@ -56,7 +56,7 @@ public class TestFinanceReport {
     
     
     @Test
-    public void testFinanceReportSetPayments() throws FinanceException {
+    void testFinanceReportSetPayments() throws FinanceException {
         Payment[] payments1 = new Payment[2];
         Payment[] payments2 = new Payment[2];
         Payment[] payments3 = new Payment[3];
@@ -81,7 +81,7 @@ public class TestFinanceReport {
     
     
     @Test
-    public void testFinanceReportSetReporterName() throws FinanceException {
+    void testFinanceReportSetReporterName() throws FinanceException {
         Payment[] payments = new Payment[2];
         
         payments[0] = new Payment("Иванов И. И.", 2, 2, 2002, 1999999);
@@ -100,7 +100,7 @@ public class TestFinanceReport {
     
     
     @Test
-    public void testFinanceReportSetDate() throws FinanceException {
+    void testFinanceReportSetDate() throws FinanceException {
         Payment[] payments = new Payment[2];
         
         payments[0] = new Payment("Иванов И. И.", 2, 2, 2002, 1999999);
@@ -125,7 +125,7 @@ public class TestFinanceReport {
     
     
     @Test
-    public void testFinanceReporterToString() throws FinanceException {
+    void testFinanceReporterToString() throws FinanceException {
         Payment[] payments = new Payment[4];
         
         payments[0] = new Payment("Иванов И. И.", 2, 2, 2002, 1999999);
@@ -145,7 +145,7 @@ public class TestFinanceReport {
     
     
     @Test
-    public void testFinanceReportEquals() throws FinanceException {
+    void testFinanceReportEquals() throws FinanceException {
         Payment[] payments1 = new Payment[4];
         Payment[] payments2 = new Payment[4];
     
