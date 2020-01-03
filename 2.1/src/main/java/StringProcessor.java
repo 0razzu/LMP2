@@ -1,6 +1,3 @@
-package string_processor;
-
-
 public class StringProcessor {
     public static String loopString(String string, int coefficient) throws StringException {
         if (coefficient < 0)

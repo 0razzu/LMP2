@@ -1,6 +1,3 @@
-package string_processor;
-
-
 public enum StringErrorCode {
     NEGATIVE_COEFFICIENT("Coefficient cannot be negative"),
     NULL_STRING("String cannot be null"),

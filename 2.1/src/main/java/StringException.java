@@ -1,6 +1,3 @@
-package string_processor;
-
-
 public class StringException extends Exception {
     private StringErrorCode errorCode;
 
