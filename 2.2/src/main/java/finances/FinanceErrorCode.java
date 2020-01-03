@@ -1,4 +1,4 @@
-package finance;
+package finances;
 
 
 public enum FinanceErrorCode {
@@ -7,16 +7,16 @@ public enum FinanceErrorCode {
     WRONG_AMOUNT("Amount of money cannot be 0"),
     NULL_PAYMENTS("Payments cannot be null"),
     NULL_REPORT("Finance report cannot be null");
-
-
+    
+    
     private String errorString;
-
-
+    
+    
     private FinanceErrorCode(String errorString) {
         this.errorString = errorString;
     }
-
-
+    
+    
     public String getErrorString() {
         return errorString;
     }

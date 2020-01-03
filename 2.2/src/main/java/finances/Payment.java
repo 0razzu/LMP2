@@ -1,4 +1,4 @@
-package finance;
+package finances;
 
 
 import java.util.Objects;

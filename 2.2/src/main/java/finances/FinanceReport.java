@@ -1,4 +1,4 @@
-package finance;
+package finances;
 
 
 import java.util.Arrays;
@@ -18,9 +18,9 @@ public class FinanceReport {
     }
     
     
-    public FinanceReport(FinanceReport financeReport) throws FinanceException {
-        this(financeReport.getPayments(), financeReport.getReporterName(),
-                financeReport.getDay(), financeReport.getMonth(), financeReport.getYear());
+    public FinanceReport(FinanceReport report) throws FinanceException {
+        this(report.getPayments(), report.getReporterName(),
+                report.getDay(), report.getMonth(), report.getYear());
     }
     
     
@@ -43,7 +43,7 @@ public class FinanceReport {
     public void setReporterName(String reporterName) throws FinanceException {
         if ((reporterName == null) || (reporterName.equals("")))
             throw new FinanceException(FinanceErrorCode.WRONG_NAME);
-    
+        
         this.reporterName = reporterName;
     }
     
@@ -51,7 +51,7 @@ public class FinanceReport {
     public void setDate(int day, int month, int year) throws FinanceException {
         if (Calendar.wrongDate(day, month, year))
             throw new FinanceException(FinanceErrorCode.WRONG_DATE);
-    
+        
         this.day = day;
         this.month = month;
         this.year = year;

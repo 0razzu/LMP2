@@ -1,4 +1,4 @@
-package finance;
+package finances;
 
 
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ public class TestPayment {
                 () -> assertEquals(12, payment2.getMonth()),
                 () -> assertEquals(2018, payment2.getYear()),
                 () -> assertEquals(19, payment2.getAmount()),
-        
+                
                 () -> assertEquals("Anonymous", payment3.getName()),
                 () -> assertEquals(29, payment3.getDay()),
                 () -> assertEquals(2, payment3.getMonth()),

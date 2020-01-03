@@ -1,42 +1,42 @@
-package finance;
+package finances;
 
 
 import java.util.LinkedList;
 
 
 public class FinanceReportProcessor {
-    public static FinanceReport getStartingWith(char c, final FinanceReport financeReport) throws FinanceException {
-        if (financeReport == null)
+    public static FinanceReport getStartingWith(char c, final FinanceReport report) throws FinanceException {
+        if (report == null)
             throw new FinanceException(FinanceErrorCode.NULL_REPORT);
         
         LinkedList<Payment> paymentsNew = new LinkedList<>();
         
-        for (Payment payment: financeReport.getPayments())
+        for (Payment payment: report.getPayments())
             if (payment.getName().charAt(0) == c)
                 paymentsNew.add(payment);
         
-        return new FinanceReport(paymentsNew.toArray(new Payment[0]), financeReport.getReporterName(),
-                financeReport.getDay(), financeReport.getMonth(), financeReport.getYear());
+        return new FinanceReport(paymentsNew.toArray(new Payment[0]), report.getReporterName(),
+                report.getDay(), report.getMonth(), report.getYear());
     }
     
     
-    public static FinanceReport getPaymentsLessThan(int amount, final FinanceReport financeReport) throws FinanceException {
-        if (financeReport == null)
+    public static FinanceReport getPaymentsLessThan(int amount, final FinanceReport report) throws FinanceException {
+        if (report == null)
             throw new FinanceException(FinanceErrorCode.NULL_REPORT);
         
         LinkedList<Payment> paymentsNew = new LinkedList<>();
         
-        for (Payment payment: financeReport.getPayments())
+        for (Payment payment: report.getPayments())
             if (payment.getAmount() < amount)
                 paymentsNew.add(payment);
         
-        return new FinanceReport(paymentsNew.toArray(new Payment[0]), financeReport.getReporterName(),
-                financeReport.getDay(), financeReport.getMonth(), financeReport.getYear());
+        return new FinanceReport(paymentsNew.toArray(new Payment[0]), report.getReporterName(),
+                report.getDay(), report.getMonth(), report.getYear());
     }
     
     
-    public static int getSumOn(String date, final FinanceReport financeReport) throws FinanceException {
-        if ((financeReport == null) || (date == null) || (date.equals("")))
+    public static int getSumOn(String date, final FinanceReport report) throws FinanceException {
+        if ((report == null) || (date == null) || (date.equals("")))
             throw new FinanceException(FinanceErrorCode.NULL_REPORT);
         
         int sum = 0, day, month, year;
@@ -52,7 +52,7 @@ public class FinanceReportProcessor {
         if (Calendar.wrongDate(day, month, year))
             throw new FinanceException(FinanceErrorCode.WRONG_DATE);
         
-        for (Payment payment: financeReport.getPayments())
+        for (Payment payment: report.getPayments())
             if ((payment.getDay() == day) && (payment.getMonth() == month) && (payment.getYear() == year))
                 sum += payment.getAmount();
         
@@ -60,8 +60,8 @@ public class FinanceReportProcessor {
     }
     
     
-    public static String getMonthsWithoutPayments(final FinanceReport financeReport, int year) throws FinanceException {
-        if (financeReport == null)
+    public static String getMonthsWithoutPayments(final FinanceReport report, int year) throws FinanceException {
+        if (report == null)
             throw new FinanceException(FinanceErrorCode.NULL_REPORT);
         
         if (year <= 0)
@@ -75,7 +75,7 @@ public class FinanceReportProcessor {
         for (byte i = 0; i < 12; i++)
             monthHasPayments[i] = false;
         
-        for (Payment payment: financeReport.getPayments())
+        for (Payment payment: report.getPayments())
             if (payment.getYear() == year)
                 monthHasPayments[payment.getMonth() - 1] = true;
         
